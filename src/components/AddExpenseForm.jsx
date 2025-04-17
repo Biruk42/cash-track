@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function AddExpenseForm() {
+function AddExpenseForm({ onAddExpense }) {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("New Expense:", { name, amount });
+    onAddExpense({ name, amount: parseFloat(amount) });
     setName("");
     setAmount("");
   };
