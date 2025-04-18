@@ -17,12 +17,18 @@ function App() {
     ]);
   };
 
+  const deleteExpense = (id) => {
+    setExpenses((prevExpenses) =>
+      prevExpenses.filter((expense) => expense.id !== id)
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="p-4 space-y-6">
         <AddExpenseForm onAddExpense={addExpense} />
-        <ExpenseList expenses={expenses} />
+        <ExpenseList expenses={expenses} onDeleteExpense={deleteExpense} />
       </main>
     </div>
   );
