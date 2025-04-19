@@ -14,33 +14,35 @@ function AddExpenseForm({ onAddExpense }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="p-4 bg-white shadow rounded space-y-4">
-      <h2 className="text-xl font-semibold">Add Expense</h2>
+      className="p-6 bg-white rounded-lg shadow-lg space-y-4">
+      <h2 className="text-xl font-semibold text-gray-700">Add Expense</h2>
       <div>
-        <label className="block text-sm font-medium">Name</label>
+        <label className="block text-sm font-medium text-gray-600">Name</label>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Expense name"
           required
         />
       </div>
       <div>
-        <label className="block text-sm font-medium">Amount</label>
+        <label className="block text-sm font-medium text-gray-600">
+          Amount
+        </label>
         <input
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Expense amount"
           required
         />
       </div>
       <button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
         Add Expense
       </button>
     </form>
