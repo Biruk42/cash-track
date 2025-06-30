@@ -1,0 +1,80 @@
+import { useState, useEffect } from "react";
+
+function EditExpenseForm({ expense, onUpdateExpense, onCancel }) {
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+
+  useEffect(() => {
+    if (expense) {
+      setName(expense.name);
+      setAmount(expense.amount);
+      setCategory(expense.category);
+    }
+  }, [expense]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onUpdateExpense({ ...expense, name, amount: parseFloat(amount), category });
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="p-6 bg-white rounded-lg shadow-lg space-y-4">
+      <h2 className="text-xl font-semibold text-gray-700">Edit Expense</h2>
+      <div>
+        <label className="block text-sm font-medium text-gray-600">Name</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Expense name"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-600">
+          Amount
+        </label>
+        <input
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Expense amount"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-600">
+          Category
+        </label>
+        <input
+          type="text"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Expense category"
+          required
+        />
+      </div>
+      <div className="flex justify-end space-x-4">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition duration-300">
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+          Update
+        </button>
+      </div>
+    </form>
+  );
+}
+
+export default EditExpenseForm;
