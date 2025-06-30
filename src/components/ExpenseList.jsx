@@ -20,11 +20,17 @@ function ExpenseList({ expenses, onDeleteExpense }) {
                 transition={{ duration: 0.3 }}>
                 <div>
                   <span className="text-gray-700">{expense.name}</span>
+                  <span className="text-sm text-gray-500 ml-2">{expense.category}</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <span className="text-gray-900 font-semibold">
                     ${expense.amount.toFixed(2)}
                   </span>
+                  <button
+                    onClick={() => onEditExpense(expense)}
+                    className="text-blue-600 hover:text-blue-800 transition duration-300 mr-2">
+                    Edit
+                  </button>
                   <button
                     onClick={() => onDeleteExpense(expense.id)}
                     className="text-red-600 hover:text-red-800 transition duration-300">
