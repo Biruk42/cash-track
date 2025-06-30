@@ -3,12 +3,14 @@ import { useState } from "react";
 function AddExpenseForm({ onAddExpense }) {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddExpense({ name, amount: parseFloat(amount) });
+    onAddExpense({ name, amount: parseFloat(amount), category });
     setName("");
     setAmount("");
+    setCategory("");
   };
 
   return (
@@ -37,6 +39,19 @@ function AddExpenseForm({ onAddExpense }) {
           onChange={(e) => setAmount(e.target.value)}
           className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Expense amount"
+          required
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-600">
+          Category
+        </label>
+        <input
+          type="text"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Expense category"
           required
         />
       </div>
